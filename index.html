@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المصحف الذهني</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- This line is correct because Qfavic.png is in the same folder -->
+    <link rel="icon" href="Qfavic.png" type="image/png"> 
+</head>
+<body>
+
+    <header>
+        <h1>المصحف الذهني</h1>
+    </header>
+
+    <div class="status-bar">
+        <div id="progress-counter">0 / 114</div>
+        <div id="timer">00:00</div>
+    </div>
+
+    <main>
+        <div id="surah-grid"></div>
+    </main>
+
+    <footer>
+        <div class="input-area">
+            <input type="text" id="surah-input" placeholder="أدخل اسم السورة هنا..." autocomplete="off">
+            <button id="submit-button">إدخال</button>
+        </div>
+        <div id="feedback-message"></div>
+    </footer>
+    
+    <aside class="leaderboard-container">
+        <h2>لوحة الأوائل</h2>
+        <ol id="leaderboard-list"></ol>
+    </aside>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
