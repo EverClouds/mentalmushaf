@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المصحف الذهني</title>
+    <!-- The Supabase library now loads first, in the head -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="Qfavic.png" type="image/png">
@@ -28,7 +29,6 @@
         <div class="input-area">
             <input type="text" id="game-input" placeholder="أدخل اسم السورة هنا..." autocomplete="off">
             <button id="submit-button">إدخال</button>
-            <!-- NEW: "Show All" Button -->
             <button id="show-all-btn">إظهار الكل</button>
         </div>
         <div id="feedback-message"></div>
@@ -47,6 +47,13 @@
         <ol id="leaderboard-list"></ol>
     </aside>
 
-    <script src="script.js" defer></script>
+    <!--
+        MOVED SCRIPT TAG HERE:
+        By moving the script to the end of the body and removing 'defer',
+        we ensure that the Supabase library is fully loaded before this script runs.
+        This fixes the live deployment bug.
+    -->
+    <script src="script.js"></script>
+
 </body>
 </html>
