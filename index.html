@@ -6,14 +6,12 @@
     <title>المصحف الذهني</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
-    
-    <!-- This line is correct because Qfavic.png is in the same folder -->
-    <link rel="icon" href="Qfavic.png" type="image/png"> 
+    <link rel="icon" href="Qfavic.png" type="image/png">
 </head>
 <body>
 
     <header>
-        <h1>المصحف الذهني</h1>
+        <h1 id="game-title">المصحف الذهني - السور</h1>
     </header>
 
     <div class="status-bar">
@@ -22,19 +20,30 @@
     </div>
 
     <main>
-        <div id="surah-grid"></div>
+        <div id="surahs-grid-container" class="grid-container"></div>
+        <div id="prophets-grid-container" class="grid-container" style="display: none;"></div>
     </main>
 
     <footer>
         <div class="input-area">
-            <input type="text" id="surah-input" placeholder="أدخل اسم السورة هنا..." autocomplete="off">
+            <input type="text" id="game-input" placeholder="أدخل اسم السورة هنا..." autocomplete="off">
             <button id="submit-button">إدخال</button>
+            <!-- NEW: "Show All" Button -->
+            <button id="show-all-btn">إظهار الكل</button>
         </div>
         <div id="feedback-message"></div>
     </footer>
+
+    <div class="mode-switcher">
+        <button id="surahs-mode-btn" class="mode-btn active">السور</button>
+        <button id="prophets-mode-btn" class="mode-btn">الأنبياء</button>
+    </div>
     
     <aside class="leaderboard-container">
-        <h2>لوحة الأوائل</h2>
+        <h2 id="leaderboard-header">
+            لوحة الأوائل
+            <span id="toggle-arrow">▼</span>
+        </h2>
         <ol id="leaderboard-list"></ol>
     </aside>
 
