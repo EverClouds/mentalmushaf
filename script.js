@@ -60,20 +60,18 @@ function normalizeText(text) { text = text.replace(/أ|إ|آ/g, 'ا').replace(/�
 function displayFeedback(message, type) { feedbackMessage.textContent = message; feedbackMessage.className = `feedback-${type}`; setTimeout(() => { feedbackMessage.textContent = ''; }, 2500); }
 function formatTime(secs) { const mins = Math.floor(secs / 60); const remSecs = secs % 60; return `${String(mins).padStart(2, '0')}:${String(remSecs).padStart(2, '0')}`; }
 
-// ---- Leaderboard Functions (FIXED)----
+// ---- Leaderboard Functions ----
 async function fetchLeaderboard() {
     const mode = gameState.currentMode;
     const table = gameModesData[mode].leaderboardTable;
     if (!table) { leaderboardList.innerHTML = ''; return; }
-
     const { data, error } = await supabase.from(table).select('player_name, time_seconds').order('time_seconds', { ascending: true }).limit(10);
-    leaderboardList.innerHTML = ''; // Clear previous entries
+    leaderboardList.innerHTML = '';
     if (error) { console.error(`Error fetching leaderboard for ${mode}:`, error); return; }
     data.forEach((score, index) => {
         const li = document.createElement('li');
         if (index < 3) li.classList.add(`rank-${index + 1}`);
         li.innerHTML = `<span class="player-name">${score.player_name}</span><span class="player-score">${formatTime(score.time_seconds)}</span>`;
-        // Append directly to the list, not a wrapper
         leaderboardList.appendChild(li);
     });
 }
@@ -276,29 +274,36 @@ function initialize() {
     buildGrid('surahs');
     buildGrid('prophets');
     updateUiForMode('surahs');
+
     submitButton.addEventListener('click', checkAnswer);
     gameInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkAnswer(); });
     leaderboardHeader.addEventListener('click', () => leaderboardContainer.classList.toggle('is-collapsed'));
     showAllBtn.addEventListener('click', showAll);
+    
     surahsModeBtn.addEventListener('click', () => switchMode('surahs'));
     prophetsModeBtn.addEventListener('click', () => switchMode('prophets'));
     otherModeBtn.addEventListener('click', () => otherMenuModal.style.display = 'flex');
     closeModalBtn.addEventListener('click', () => otherMenuModal.style.display = 'none');
+    
     surahNumbersBtn.addEventListener('click', () => { otherMenuModal.style.display = 'none'; switchMode('surahNumbers'); });
     classificationBtn.addEventListener('click', () => { otherMenuModal.style.display = 'none'; switchMode('classification'); });
+    
     skipBtn.addEventListener('click', () => nextQuestion(gameState.currentMode));
     showAnswerBtn.addEventListener('click', () => {
         const state = gameState.surahNumbers;
         const correctAnswer = gameModesData.surahs.names.indexOf(state.currentQuestion) + 1;
         alert(`رقم سورة ${state.currentQuestion} هو ${correctAnswer}`);
     });
+    
     makkiBtn.addEventListener('click', () => checkClassificationAnswer('makki'));
     madaniBtn.addEventListener('click', () => checkClassificationAnswer('madani'));
+    
     huroofBtn.addEventListener('click', () => {
         surahsGridContainer.classList.remove('classification-mode-active');
         colorKey.style.display = 'none';
         surahsGridContainer.classList.toggle('huroof-mode-active');
     });
+    
     makkiMadaniBtn.addEventListener('click', () => {
         surahsGridContainer.classList.remove('huroof-mode-active');
         surahsGridContainer.classList.toggle('classification-mode-active');
