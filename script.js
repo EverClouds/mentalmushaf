@@ -31,8 +31,8 @@ const surahNumbersBtn = document.getElementById('surah-numbers-btn');
 const classificationBtn = document.getElementById('classification-btn');
 
 // ---- PART 2: Supabase Setup ----
-const SUPABASE_URL = 'https://woonpgbywiwbkeiexfem.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indvb25wZ2J5d2l3YmtlaWV4ZmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1MzE2OTksImV4cCI6MjA2ODEwNzY5OX0.-1zaAaP2FfCc80wlcwV7GcO7m-xOhHflake7s22FYD8';
+const SUPABASE_URL = 'https://ldmrqvihaoekqssdyddx.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxkbXJxdmloYW9la3Fzc2R5ZGR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyNjkxNzksImV4cCI6MjA4Njg0NTE3OX0.3gpEMsG9WLGsQLnz-jisO9F96kIyNURFjTI_BQRzomA';
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // ---- PART 3: Game Data ----
